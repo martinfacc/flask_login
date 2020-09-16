@@ -1,0 +1,57 @@
+{% extends "master_metronic.html" %}
+{% block body %}
+    <form method="POST" class="form-login-signin">
+      {% if alert_success %}
+        <div class="alert alert-success" role="alert">
+          El usuario se ha editado con éxito,  <a href="{{url_for('inicio')}}">¿Desea ir al inicio?</a>
+        </div>
+      {% endif %}
+      {% if alert_error %}
+        <div class="alert alert-danger" role="alert">
+          {{mensaje_error}}
+        </div>
+      {% endif %}
+      <h1 class="h3 mb-3 font-weight-normal">Edite sus parametros de usuario si asi lo desea</h1>
+      <div>
+        <label for="nombre_usuario">Editar nombre de usuario</label>
+        <input 
+          required
+          type="text" 
+          value="{{ usuario.nombre_usuario }}" 
+          name="nombre_usuario" 
+          class="form-control" 
+          placeholder="Usuario" 
+          autofocus
+        >
+      </div>
+
+      <div>
+        <label for="nueva_contrasena">Cambiar contraseña</label>
+        <input
+          type="password" 
+          name="nueva_contrasena" 
+          class="form-control" 
+          placeholder="Nueva ontraseña"
+        >
+        <input 
+          type="password" 
+          name="c_nueva_contrasena" 
+          class="form-control" 
+          placeholder="Confirmar nueva contraseña"
+        >
+      </div>
+
+      <div>
+        <label for="contrasena">Ingrese su contraseña actual</label>
+        <input 
+          required
+          type="password"
+          name="contrasena" 
+          class="form-control" 
+          placeholder="Contraseña actual"
+        >
+        </div>
+
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Editar usuario</button>
+    </form>
+  {% endblock %}

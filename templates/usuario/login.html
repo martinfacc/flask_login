@@ -1,0 +1,22 @@
+{% extends "master_metronic.html" %}
+{% block body %}
+    <form method="POST" class="form-login-signin">
+      {% if alert_error %}
+      <div class="alert alert-danger" role="alert">
+        {{mensaje_error}}
+      </div>
+      {% endif %}
+      <h1 class="h3 mb-3 font-weight-normal">Por favor, inicia sesión</h1>
+      <div>
+        <input type="text" name="nombre_usuario" class="form-control" placeholder="Usuario" required autofocus>
+      </div>
+      <div>
+        <input type="password" name="contrasena" class="form-control" placeholder="Contraseña" required>
+      </div>
+      <div class="checkbox mb-3">
+        <label><input type="checkbox" name="recuerdame"> Mantener la sesión iniciada</label>
+      </div>
+      <label>¿No tienes un usuario? </label><a href="{{url_for('signin')}}"> Crear usuario</a>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+    </form>
+  {% endblock %}

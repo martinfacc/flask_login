@@ -1,0 +1,29 @@
+{% extends "master_metronic.html" %}
+{% block body %}
+    <form
+        method="POST"
+        enctype="multipart/form-data"
+        >
+        {% if alert_success %}
+            <div class="alert alert-success" role="alert">
+            El archivo {{nombre}} se ha guardado con éxito
+            </div>
+        {% endif %}
+        {% if alert_error %}
+            <div class="alert alert-danger" role="alert">
+            {{mensaje_error}}
+            </div>
+        {% endif %}
+        <input
+            type="file"
+            name="archivo"
+        >
+        <input
+            type="text"
+            name="descripcion"
+        >
+        <input
+            type="submit"
+        >
+    </form>
+{% endblock %}

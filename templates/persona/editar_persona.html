@@ -1,0 +1,263 @@
+{% extends "master_metronic.html" %}
+{% block body %}
+
+<div class="container">
+    <!--begin::Subheader-->
+    <div class="subheader py-2 py-lg-6  subheader-transparent " id="kt_subheader">
+        <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <!--begin::Page Heading-->
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <!--begin::Page Title-->
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">
+                        {{titulo}}
+                    </h5>
+                    <!--end::Page Title-->
+                    <!--begin::Breadcrumb-->
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a href="javascript:void(0);" class="text-muted">
+                                Personal
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{url_for('personal')}}" class="text-muted">
+                                Listado
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="javascript:void(0);" class="text-muted">
+                                {{titulo}}
+                            </a>
+                        </li>
+                    </ul>
+                    <!--end::Breadcrumb-->
+                </div>
+                <!--end::Page Heading-->
+            </div>
+            <!--end::Info-->
+        </div>
+    </div>
+    <!--end::Subheader-->
+    <div class="card card-custom">
+        <div class="card-header">
+            <h3 class="card-title">
+                {{titulo}}
+            </h3>
+        </div>
+        <!--begin::Form-->
+        <form id="personalform" method="post">
+            <div class="card-body">
+                {% if alert_success %}
+                <div class="alert alert-success" role="alert">
+                    El usuario se ha modificado con éxito
+                </div>
+                {% endif %}
+                {% if alert_error %}
+                <div class="alert alert-danger" role="alert">
+                    Ocurrio un error. Por favor vuelva a intentar nuevamente
+                </div>
+                {% endif %}
+
+                <div class="form-group row">
+                    <label for="nombre" class="
+                    col-2 col-form-label">Nombre</label>
+                    <div class="col-6">
+                        <input required value="{{ persona.nombre }}" type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="apellido" class="col-2 col-form-label">Apellido</label>
+                    <div class="col-6">
+                        <input required value="{{ persona.apellido }}" type="text" name="apellido" class="form-control" id="apellido" placeholder="Apellido">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="cuil" class="col-2 col-form-label">CUIL</label>
+                    <div class="col-6">
+                        <input required value="{{ persona.cuil }}" type="number" name="cuil" class="form-control" id="cuil" placeholder="CUIL">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="documento" class="col-2 col-form-label">Documento</label>
+                    <div class="col-6">
+                        <input value="{{ persona.documento }}" type="number" name="documento" class="form-control" id="documento" placeholder="Documento">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="cargo" class="col-2 col-form-label">Cargo</label>
+                    <div class="col-6">
+                        <input value="{{ persona.cargo }}" type="text" name="cargo" class="form-control" id="cargo" aria-describedby="emailHelp" placeholder="ej: Vicepresidente ejecutivo">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="correo_ofi" class="col-2 col-form-label">Correo electrónico oficial</label>
+                    <div class="col-6">
+                        <input value="{{ persona.correo_ofi }}" type="email" name="correo_ofi" class="form-control" id="correo_ofi" placeholder="ejemplo@mail.com">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="correo_priv" class="col-2 col-form-label">Correo electrónico privado</label>
+                    <div class="col-6">
+                        <input value="{{ persona.correo_priv }}" type="email" name="correo_priv" class="form-control" id="correo_priv" placeholder="ejemplo@mail.com">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="secretaria" class="col-2 col-form-label">Secretaria</label>
+                    <div class="col-6">
+                        <input value="{{ persona.secretaria }}" type="text" name="secretaria" class="form-control" id="secretaria" aria-describedby="emailHelp" placeholder="Secretaria">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="subsecretaria" class="col-2 col-form-label">Subsecretaria</label>
+                    <div class="col-6">
+                        <input value="{{ persona.subsecretaria }}" type="text" name="subsecretaria" class="form-control" id="subsecretaria" aria-describedby="emailHelp" placeholder="ej: SSA">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="dependencia" class="col-2 col-form-label">Dependencia</label>
+                    <div class="col-6">
+                        <input value="{{ persona.dependencia }}" type="text" name="dependencia" class="form-control" id="dependencia" aria-describedby="emailHelp" placeholder="ej: DGTIC">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="celular" class="col-2 col-form-label">Celular</label>
+                    <div class="col-6">
+                        <input value="{{ persona.celular }}" type="text" name="celular" class="form-control" id="celular" aria-describedby="emailHelp" placeholder="ej: 221 455-6107">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="contrato" class="col-2 col-form-label">Contrato</label>
+                    <div class="col-6">
+                        <input value="{{ persona.contrato }}" type="text" name="contrato" class="form-control" id="contrato" aria-describedby="emailHelp" placeholder="ej: Ley Marco">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="baja" class="col-2 col-form-label">Baja</label>
+                    <div class="col-6">
+                        <select class="form-control" name="baja" id="baja">
+                            {% if not persona.baja == True %}
+                            <option value="True">Si</option>
+                            <option value="False" selected>No</option>
+                            {% endif %}
+                            {% if persona.baja == True %}
+                            <option value="True" selected>Si</option>
+                            <option value="False">No</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="base_rrhh" class="col-2 col-form-label">Base RRHH</label>
+                    <div class="col-6">
+                        <select class="form-control" name="base_rrhh" id="base_rrhh">
+                            {% if not persona.base_rrhh == True %}
+                            <option value="True">Si</option>
+                            <option value="False" selected>No</option>
+                            {% endif %}
+                            {% if persona.base_rrhh == True %}
+                            <option value="True" selected>Si</option>
+                            <option value="False">No</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-10">
+                        <button type="submit" class="btn btn-success mr-2">Guardar</button>
+                        <a href=" {{  url_for('personal') }} " class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block script %}
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+
+    <script>
+    var id = parseInt('{{ id|safe }}')
+
+
+    function limpiaForm(miForm) {
+        // recorremos todos los campos que tiene el formulario
+        $(':input', miForm).each(function() {
+        var type = this.type;
+        var tag = this.tagName.toLowerCase();
+        //limpiamos los valores de los campos…
+        if (type == 'text' || type == 'password' || tag == 'textarea')
+            this.value = '';
+            // excepto de los checkboxes y radios, le quitamos el checked
+            // pero su valor no debe ser cambiado
+        else if (type == 'checkbox' || type == 'radio')
+            this.checked = false;
+        // los selects le ponesmos el indice a -
+        else if (tag == 'select')
+            this.selectedIndex = 1;
+        });
+    }       
+
+         $.extend( $.validator.messages, {
+            required: "Este campo es obligatorio.",
+            remote: "Por favor, completá este campo.",
+            email: "Por favor, escribí una dirección de correo válida.",
+            url: "Por favor, escribí una URL válida.",
+            date: "Por favor, escribí una fecha válida.",
+            dateISO: "Por favor, escribí una fecha (ISO) válida.",
+            number: "Por favor, escribí un número entero válido.",
+            digits: "Por favor, escribí sólo dígitos.",
+            creditcard: "Por favor, escribí un número de tarjeta válido.",
+            equalTo: "Por favor, escribí el mismo valor de nuevo.",
+            extension: "Por favor, escribí un valor con una extensión aceptada.",
+            maxlength: $.validator.format( "Por favor, no escribas más de {0} caracteres." ),
+            minlength: $.validator.format( "Por favor, no escribas menos de {0} caracteres." ),
+            rangelength: $.validator.format( "Por favor, escribí un valor entre {0} y {1} caracteres." ),
+            range: $.validator.format( "Por favor, escribí un valor entre {0} y {1}." ),
+            max: $.validator.format( "Por favor, escribí un valor menor o igual a {0}." ),
+            min: $.validator.format( "Por favor, escribí un valor mayor o igual a {0}." ),
+            nifES: "Por favor, escribí un NIF válido.",
+            nieES: "Por favor, escribí un NIE válido.",
+            cifES: "Por favor, escribí un CIF válido."
+        } );
+        var myform = $("#personalform").validate({
+            lang:'es',
+            submitHandler: function(form) {
+                // $(form).submit();
+                //myform.resetForm();   
+                //limpiaForm($('#personalform'))
+
+                var array = $(form).serializeArray();
+                var objeto = {}
+                array.forEach(elem => {
+                    objeto[elem.name] = elem.value
+                })
+                
+                if(id) {
+                $.post('/editarpersona/' + id,objeto,function(data){
+                    
+                })                 
+                } else {
+                $.post('/altapersona',objeto,function(data){
+                    limpiaForm($(form))
+                })  
+                    
+                }
+                
+           
+            }
+        });
+    
+    
+    </script>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "master_metronic.html" %}
+{% block body %}
+    <form method="POST" class="form-login-signin">
+      {% if alert_success %}
+        <div class="alert alert-success" role="alert">
+            El usuario se ha creado con éxito,  <a href="{{url_for('inicio')}}">¿Desea ir al inicio?</a>
+        </div>
+        {% endif %}
+        {% if alert_error %}
+        <div class="alert alert-danger" role="alert">
+            {{mensaje_error}}
+        </div>
+        {% endif %}
+      <h1 class="h3 mb-3 font-weight-normal">Por favor, registrate</h1>
+      <div>
+        <input type="text" name="nombre_usuario" class="form-control" placeholder="Usuario" required autofocus>
+      </div>
+      <div>
+      <input type="password" name="contrasena" class="form-control" placeholder="Contraseña" required>
+      </div>
+      <div>
+        <input type="password" name="contrasena_confirmar" class="form-control" placeholder="Confirmar contraseña" required>
+        </div>
+      <label>¿Ya tienes un usuario? </label><a href="{{url_for('login')}}"> Iniciar sesión</a>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Crear usuario</button>
+    </form>
+  {% endblock %}
